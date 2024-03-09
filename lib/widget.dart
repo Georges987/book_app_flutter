@@ -355,106 +355,107 @@ class Admin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(),
         body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(
-            height: 20,
-          ),
-          const Text(
-            "ADMIN",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          InkWell(
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return const AddBook();
-                },
-              ),
-            ),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.add),
-                ParticularBtn(
-                  title: "Ajouter un livre",
-                  color: Colors.red,
-                  size: 300,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          InkWell(
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return const EditBook();
-                },
-              ),
-            ),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.edit),
-                ParticularBtn(
-                  title: "Modifier un livre",
-                  color: Colors.blue,
-                  size: 300,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          InkWell(
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) {
-                  return const InfoBook();
-                },
-              ),
-            ),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.info),
-                ParticularBtn(
-                  title: "Info sur un livre",
-                  color: Colors.yellow,
-                  size: 300,
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const Row(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.follow_the_signs),
-              ParticularBtn(
-                title: "Suivie des emprunts",
-                color: Colors.green,
-                size: 300,
+              const SizedBox(
+                height: 20,
+              ),
+              const Text(
+                "ADMIN",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              InkWell(
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const AddBook();
+                    },
+                  ),
+                ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.add),
+                    ParticularBtn(
+                      title: "Ajouter un livre",
+                      color: Colors.red,
+                      size: 300,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              InkWell(
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const EditBook();
+                    },
+                  ),
+                ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.edit),
+                    ParticularBtn(
+                      title: "Modifier un livre",
+                      color: Colors.blue,
+                      size: 300,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              InkWell(
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const InfoBook();
+                    },
+                  ),
+                ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.info),
+                    ParticularBtn(
+                      title: "Info sur un livre",
+                      color: Colors.yellow,
+                      size: 300,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.follow_the_signs),
+                  ParticularBtn(
+                    title: "Suivie des emprunts",
+                    color: Colors.green,
+                    size: 300,
+                  ),
+                ],
               ),
             ],
           ),
-        ],
-      ),
-    ));
+        ));
   }
 }
 
@@ -512,8 +513,30 @@ class AddBook extends StatelessWidget {
   }
 }
 
-class EditBook extends StatelessWidget {
+class EditBook extends StatefulWidget {
   const EditBook({super.key});
+
+  @override
+  State<EditBook> createState() => _EditBookState();
+}
+
+class _EditBookState extends State<EditBook> {
+  final TextEditingController _titreController = TextEditingController();
+  final TextEditingController _auteurController = TextEditingController();
+  final TextEditingController _categorieController = TextEditingController();
+  final TextEditingController _codeController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      _titreController.text = "Ergonomie";
+      _auteurController.text = "AYENI Georges";
+      _categorieController.text = "Science";
+      _codeController.text = "123456789";
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -521,44 +544,48 @@ class EditBook extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Modifier un livre"),
       ),
-      body: const SingleChildScrollView(
-        padding: EdgeInsets.all(10),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             TextField(
-              decoration: InputDecoration(
+              controller: _titreController,
+              decoration: const InputDecoration(
                 labelText: "Titre",
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             TextField(
-              decoration: InputDecoration(
+              controller: _auteurController,
+              decoration: const InputDecoration(
                 labelText: "Auteur",
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             TextField(
-              decoration: InputDecoration(
+              controller: _categorieController,
+              decoration: const InputDecoration(
                 labelText: "Categorie",
                 suffixIcon: Icon(Icons.arrow_drop_down),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             TextField(
-              decoration: InputDecoration(
+              controller: _codeController,
+              decoration: const InputDecoration(
                 labelText: "Code d'identification",
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Row(
+            const Row(
               children: [
                 Spacer(),
                 ParticularBtn(title: "Modifier", color: Colors.blue),
@@ -590,9 +617,20 @@ class InfoBook extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Image.network(
-              "https://img.freepik.com/psd-gratuit/illustration-code-barres-isolee_23-2150584086.jpg?size=626&ext=jpg&ga=GA1.1.1292351815.1709856000&semt=ais",
-              fit: BoxFit.cover,
+            Container(
+              height: 250,
+              child: Image.network(
+                "https://img.freepik.com/psd-gratuit/illustration-code-barres-isolee_23-2150584086.jpg?size=626&ext=jpg&ga=GA1.1.1292351815.1709856000&semt=ais",
+                fit: BoxFit.cover,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  }
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
             ),
             const SizedBox(
               height: 20,
