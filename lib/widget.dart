@@ -517,54 +517,59 @@ class EditBook extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
-      padding: EdgeInsets.all(10),
-      child: Column(
-        children: [
-          TextField(
-            decoration: InputDecoration(
-              labelText: "Titre",
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          TextField(
-            decoration: InputDecoration(
-              labelText: "Auteur",
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          TextField(
-            decoration: InputDecoration(
-              labelText: "Categorie",
-              suffixIcon: Icon(Icons.arrow_drop_down),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          TextField(
-            decoration: InputDecoration(
-              labelText: "Code d'identification",
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              Spacer(),
-              ParticularBtn(title: "Modifier", color: Colors.yellow),
-              SizedBox(
-                width: 10,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Modifier un livre"),
+      ),
+      body: const SingleChildScrollView(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                labelText: "Titre",
               ),
-              ParticularBtn(title: "Supprimer", color: Colors.red),
-            ],
-          )
-        ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TextField(
+              decoration: InputDecoration(
+                labelText: "Auteur",
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TextField(
+              decoration: InputDecoration(
+                labelText: "Categorie",
+                suffixIcon: Icon(Icons.arrow_drop_down),
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TextField(
+              decoration: InputDecoration(
+                labelText: "Code d'identification",
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                Spacer(),
+                ParticularBtn(title: "Modifier", color: Colors.blue),
+                SizedBox(
+                  width: 10,
+                ),
+                ParticularBtn(title: "Supprimer", color: Colors.red),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
